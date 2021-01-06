@@ -1,0 +1,10 @@
+name: synapse
+channels:
+  - defaults
+dependencies:
+  - pip=20.2.2=py37_0
+  - python=3.7.9
+  - pip:
+    - boto3==2.2.0
+    - pandas
+    - synapseclient
