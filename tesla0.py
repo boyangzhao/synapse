@@ -12,7 +12,8 @@ client = boto3.client(
     aws_session_token=sts_credentials['sessionToken'],
 )
 
-query = syn.tableQuery( " SELECT * FROM syn23534327 WHERE ( ( modifiedBy = 3382314 ) AND ( parentId = 'syn10141118' ) )" ) ### get list of lung cancer file IDs
+### get list of lung cancer file IDs
+query = syn.tableQuery( " SELECT * FROM syn23534327 WHERE ( ( modifiedBy = 3382314 ) AND ( parentId = 'syn10141118' ) )" ) 
 query_df = query.asDataFrame()
 query_IDs = query_df['id'].values
 for syn_id in query_IDs:
@@ -21,7 +22,8 @@ for syn_id in query_IDs:
                                    ent._file_handle['key'],
                                    ent.name) ### the file will be downloaded to your current folder 
 
-query = syn.tableQuery( " SELECT * FROM syn23534327 WHERE ( ( modifiedBy = 3382314 ) AND ( parentId = 'syn16810855' OR parentId = 'syn8262420' ) ) " ) ### get list of 'melanoma 1' file IDs
+### get list of 'melanoma 1' file IDs
+query = syn.tableQuery( " SELECT * FROM syn23534327 WHERE ( ( modifiedBy = 3382314 ) AND ( parentId = 'syn16810855' OR parentId = 'syn8262420' ) ) " ) 
 query_df = query.asDataFrame()
 query_IDs = query_df['id'].values
 for syn_id in query_IDs:
@@ -30,7 +32,8 @@ for syn_id in query_IDs:
                                    ent._file_handle['key'],
                                    ent.name) 
 
-query = syn.tableQuery( " SELECT * FROM syn23534327 WHERE ( ( modifiedBy = 3382314 ) AND ( parentId = 'syn15672147' ) )" ) ### get list of 'melanoma 2' file IDs
+### get list of 'melanoma 2' file IDs
+query = syn.tableQuery( " SELECT * FROM syn23534327 WHERE ( ( modifiedBy = 3382314 ) AND ( parentId = 'syn15672147' ) )" ) 
 query_df = query.asDataFrame()
 query_IDs = query_df['id'].values
 for syn_id in query_IDs:
@@ -38,3 +41,4 @@ for syn_id in query_IDs:
      client.download_file(ent._file_handle['bucketName'],
                                    ent._file_handle['key'],
                                    ent.name)
+

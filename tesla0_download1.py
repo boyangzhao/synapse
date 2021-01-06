@@ -12,10 +12,13 @@ client = boto3.client(
     aws_session_token=sts_credentials['sessionToken'],
 )
 
-query = syn.tableQuery( " SELECT * FROM syn23534327 WHERE ( ( modifiedBy = 3382314 ) AND ( parentId = 'syn10141118' ) )" ) ### get list of lung cancer file IDs
+### get list of lung cancer file IDs
+query = syn.tableQuery( " SELECT * FROM syn23534327 WHERE ( ( modifiedBy = 3382314 ) AND ( parentId = 'syn10141118' ) )" ) 
 query_df = query.asDataFrame()
 query_IDs = query_df['id'].values
 for syn_id in query_IDs:
     ent = syn.get(syn_id, downloadFile=False)
     print(ent)
-      
+
+# test download one file
+client.download_file(ent._file_handle['bucketName'], ent._file_handle['key'], ent.name)
